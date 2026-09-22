@@ -1,0 +1,120 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "zai-coding-plan/glm-5.3-flash",
+  "small_model": "zai-coding-plan/glm-4.7",
+  "provider": {
+    "zai-coding-plan": {
+      "options": {
+        "baseURL": "https://api.z.ai/api/coding/paas/v4",
+        "apiKey": "{env:ZAI_API_KEY}"
+      },
+      "models": {
+        "glm-5.3-flash": {
+          "name": "GLM-5.3-Flash"
+        },
+        "glm-5.3": {
+          "name": "GLM-5.3"
+        },
+        "glm-4.7": {
+          "name": "GLM-4.7"
+        }
+      }
+    },
+    "qwencloud": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "QwenCloud",
+      "options": {
+        "baseURL": "https://llm-f2no9ju3xi5c36w3.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
+        "apiKey": "{env:DASHSCOPE_API_KEY}"
+      },
+      "models": {
+        "qwen3.8-max": {
+          "name": "Qwen3.8-Max",
+          "limit": {
+            "context": 1000000,
+            "output": 131072
+          }
+        },
+        "qwen3-vl-plus": {
+          "name": "Qwen3-VL-Plus"
+        }
+      }
+    },
+    "sakana": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Sakana",
+      "options": {
+        "baseURL": "https://api.sakana.ai/v1",
+        "apiKey": "{env:SAKANA_API_KEY}"
+      },
+      "models": {
+        "fugu-max": {
+          "name": "Sakana Fugu Max",
+          "reasoning": true
+        },
+        "fugu-max-v1.0": {
+          "name": "Sakana Fugu Max v1.0",
+          "reasoning": true
+        }
+      }
+    },
+    "deepseek": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "DeepSeek",
+      "options": {
+        "baseURL": "https://api.deepseek.com",
+        "apiKey": "{env:DEEPSEEK_API_KEY}"
+      },
+      "models": {
+        "deepseek-v4-pro": {
+          "name": "DeepSeek V4 Pro"
+        }
+      }
+    },
+    "mimo": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "MiMo Token Plan (Singapore)",
+      "options": {
+        "baseURL": "https://token-plan-sgp.xiaomimimo.com/v1",
+        "apiKey": "{env:XIAOMI_TOKEN_PLAN_API_KEY}"
+      },
+      "models": {
+        "mimo-v2.6-pro": {
+          "name": "mimo-v2.6-pro",
+          "limit": {
+            "context": 1048576,
+            "output": 131072
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "mimo-v2.6-flash": {
+          "name": "mimo-v2.6-flash",
+          "limit": {
+            "context": 1048576,
+            "output": 131072
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        }
+      }
+    },
+    "nous": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Nous Inference",
+      "options": {
+        "baseURL": "https://inference-api.nousresearch.com/v1",
+        "apiKey": "{env:NOUS_API_KEY}"
+      },
+      "models": {
+        "stealth/ox-alpha": {
+          "name": "Ox Alpha (stealth)"
+        }
+      }
+    }
+  }
+}
