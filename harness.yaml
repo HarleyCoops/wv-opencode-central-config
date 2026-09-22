@@ -1,9 +1,21 @@
+# DigitalOcean Harness Runtime — central OpenCode (draft)
+# CoS owns: doctl launch / secret inject / spend. Do not commit resolved secrets.
+# Docs: https://docs.digitalocean.com/products/managed-agents/agent-harness-runtime/reference/environment-spec/
+#
+# Inject as WV_* names so DO OpenCode does not auto-bind DASHSCOPE_API_KEY / SAKANA_API_KEY
+# to default providers. Map source keys → WV_* at launch; opencode.json reads {env:WV_*}.
+
 name: wv-opencode-central
 agent: opencode
 size: mars-1vcpu-1gb
 idle_timeout: 15m
 persistent_workspace: true
+
+# Non-secret only. Do not put API keys here (DO flags credential-shaped env names).
 env: {}
+
+# Values come from the submitting shell as ${VAR}; DO stores them and injects into the guest.
+# Omit any slot Christian has not approved for DO mirroring.
 secrets:
   OPENCODE_API_KEY: ${OPENCODE_API_KEY}
   WV_ZAI_API_KEY: ${WV_ZAI_API_KEY}
@@ -12,7 +24,20 @@ secrets:
   WV_DEEPSEEK_API_KEY: ${WV_DEEPSEEK_API_KEY}
   WV_XIAOMI_TOKEN_PLAN_API_KEY: ${WV_XIAOMI_TOKEN_PLAN_API_KEY}
   WV_NOUS_API_KEY: ${WV_NOUS_API_KEY}
-egress: unrestricted
+
+# Allowlist for hosted model APIs + GitHub. Expand if Action Gateway / custom MCP is added later.
+egress:
+  - api.z.ai
+  - llm-f2no9ju3xi5c36w3.ap-southeast-1.maas.aliyuncs.com
+  - api.sakana.ai
+  - api.deepseek.com
+  - token-plan-sgp.xiaomimimo.com
+  - inference-api.nousresearch.com
+  - github.com
+  - api.github.com
+
+# Model-only v1. Action Gateway / WA MCP out of scope.
 tools: []
+
 permissions:
   default: ask
